@@ -1,4 +1,4 @@
-# A simple Todo list
+# A Todo App with CRUD operations
 import json
 
 print("Welcome to our Todo APP :)")
@@ -69,12 +69,28 @@ def showTodos():
     input("\nPress Enter to return to menu...")
 
 
+def deleteTodo():
+    showTodos()
+    try:
+        num = int(input("Enter todo number to Delete: "))
+        if 1 <= num <= len(todos):
+            deleted = todos.pop(num - 1)
+            saveTodo()
+            print(f'The todo "{deleted["title"]}" is deleted.')
+        else:
+            print("invalid choice. try again")
+    except ValueError:
+        print("Please enter a valid number")
+
+
 def showMenu():
     print(
         """
     1. Add todo
     2. View all todos
     3. Exit program
+    4. Delete Todo
+    5. Edit Todo
     """
     )
 
@@ -86,7 +102,7 @@ def saveTodo():
 
 while True:
     showMenu()
-    choice = input("Enter choice (1/2/3): ").strip()
+    choice = input("Enter choice (1-5): ").strip()
 
     if choice == "1":
         addTodo()
@@ -95,5 +111,9 @@ while True:
     elif choice == "3":
         print("Goodbye! :)")
         break
+    elif choice == "4":
+        deleteTodo()
+    elif choice == "5":
+        editTodo()
     else:
         print("Invalid choice. Please choose again.")
