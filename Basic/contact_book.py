@@ -23,7 +23,7 @@ def showMenu():
 
 def view_all_contacts():
     if not contacts:
-        print("No contacts Found\n")
+        print("No contacts Found\n") 
     else:
         for i, name in enumerate(contacts, 1):
             print(f"{i}. {name} - {contacts[name]}")
