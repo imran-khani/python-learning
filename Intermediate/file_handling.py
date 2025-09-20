@@ -42,13 +42,33 @@
 
 # ---------------------- Load data from API and save to json file ----------------
 
+
 import requests
 import json
 
+URI = "https://jsonplaceholder.typicode.com/todos"
 
-URI = 'https://jsonplaceholder.typicode.com/todos'
+try:
+    print("Fetching data...")
+    data = requests.get(URI)
 
+    if data.status_code == 200:
+        response = data.json()
+        
+        # collect only completed todos
+        final_todos = [todo for todo in response if todo["completed"]]
 
+        print(f"Found {len(final_todos)} completed todos.")
+        print("Saving to file...")
 
+        with open("todos.json", "w") as file:
+            json.dump(final_todos, file, indent=4)
+
+        print("Data saved to file.")
+    else:
+        print("Failed with status:", data.status_code)
+
+except Exception as e:
+    print("Data fetch failed:", e)
 
 
