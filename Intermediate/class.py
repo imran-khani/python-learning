@@ -121,51 +121,131 @@
 # dog.print_animals()
 
 
-class Animal:
-    total_animals = 0
+# class Animal:
+#     total_animals = 0
 
-    def __init__(self, name, species):
-        self.name = name
-        self.species = species
-        Animal.total_animals += 1
+#     def __init__(self, name, species):
+#         self.name = name
+#         self.species = species
+#         Animal.total_animals += 1
 
-    def info(self):
-        print(f"{self.name} is a {self.species}.")
+#     def info(self):
+#         print(f"{self.name} is a {self.species}.")
 
-    def speak(self):
-        print(f"This animal make some sound...")
-
-
-class Dog(Animal):
-    def __init__(self, name, species):
-        super().__init__(name, species)
-
-    def speak(self):
-        print(f"{self.name} says: Woof! Woof!")
+#     def speak(self):
+#         print(f"This animal make some sound...")
 
 
-class Cat(Animal):
-    def __init__(self, name, species):
-        super().__init__(name, species)
+# class Dog(Animal):
+#     def __init__(self, name, species):
+#         super().__init__(name, species)
 
-    def speak(self):
-        print(f"{self.name} say Meow! Meow!")
-
-
-class Bird(Animal):
-    def __init__(self, name, species):
-        super().__init__(name, species)
-
-    def speak(self):
-        print(f"{self.name} say Ku Ku")
+#     def speak(self):
+#         print(f"{self.name} says: Woof! Woof!")
 
 
-dog = Dog("Puppy", "Dog")
-cat = Cat("Arina", "Cat")
-bird = Bird("Papeeya", "Bird")
+# class Cat(Animal):
+#     def __init__(self, name, species):
+#         super().__init__(name, species)
 
-zoo = [dog, cat, bird]
+#     def speak(self):
+#         print(f"{self.name} say Meow! Meow!")
 
-for animal in zoo:
-    animal.info()
-    animal.speak()
+
+# class Bird(Animal):
+#     def __init__(self, name, species):
+#         super().__init__(name, species)
+
+#     def speak(self):
+#         print(f"{self.name} say Ku Ku")
+
+
+# dog = Dog("Puppy", "Dog")
+# cat = Cat("Arina", "Cat")
+# bird = Bird("Papeeya", "Bird")
+
+# zoo = [dog, cat, bird]
+
+# for animal in zoo:
+#     if hasattr(animal, "info") and hasattr(animal, "speak"):
+#         animal.info()
+#         animal.speak()
+
+
+# class Student:
+#     total_students = 0
+
+#     def __init__(self, name, roll_no, marks):
+#         self.name = name
+#         self.roll_no = roll_no
+#         self.marks = marks
+#         Student.total_students += 1
+
+#     def info(self):
+#         print(f"\nStudent Name: {self.name}")
+#         print(f"Roll No: {self.roll_no}")
+#         print("Marks:")
+#         for subject, score in self.marks.items():
+#             print(f"  {subject}: {score}")
+
+#         total, average = self.grade_calculator()
+#         grade = self.calculate_grade()
+#         print(f"Total Marks: {total}")
+#         print(f"Average Marks: {average:.2f}")
+#         print(f"Grade: {grade}")
+
+#     def grade_calculator(self):
+#         total = sum(self.marks.values())
+#         average = total / len(self.marks)
+#         return total, average
+
+#     def calculate_grade(self):
+#         _, average = self.grade_calculator()
+#         if average >= 90:
+#             return "A"
+#         elif average >= 80:
+#             return "B"
+#         elif average >= 70:
+#             return "C"
+#         elif average >= 60:
+#             return "D"
+#         else:
+#             return "F"
+
+
+# # Example usage
+# student1 = Student("Ali", 1, {"Math": 85, "Science": 92, "English": 78})
+# student2 = Student("Sara", 2, {"Math": 95, "Science": 89, "English": 93})
+
+# student1.info()
+# student2.info()
+
+# print(f"\nTotal students: {Student.total_students}")
+
+
+# def enter_marks(subject, marks):
+#     try:
+#         marks = int(input("Enter your marks"))
+#         print(f"Your marks {marks}")
+    
+#     except KeyError:
+#         print("OOps the subject doesn't exist")
+    
+#     except ValueError:
+#         print("vale not matched")
+
+class myCusomeError(Exception):
+    pass
+
+
+def ask_age(age):
+    
+    try:
+
+        if age < 0:
+            raise myCusomeError("age cant' be zero or negative")
+
+    except myCusomeError as e:
+        print(e)
+
+ask_age(0)
